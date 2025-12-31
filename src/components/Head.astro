@@ -17,8 +17,7 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href
 const cleanPathname = Astro.url.pathname.replace(/\/$/, '')
-const ogImage = image || (cleanPathname ? new URL(`/og${cleanPathname}.png`, Astro.site).href : new URL('/og-default.png', Astro.site).href)
----
+const ogImage = image || 'https://i.postimg.cc/Fz36k3z3/export.webp'
 
 <head>
   <script is:inline>
