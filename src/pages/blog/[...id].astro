@@ -40,6 +40,7 @@ export async function getStaticPaths() {
 
 const post = Astro.props
 const currentPostId = Astro.params.id
+const postImage = typeof post.data.image === 'object'? post.data.image.src : post.data.image
 
 // Error handling for content rendering
 let Content: Awaited<ReturnType<typeof render>>['Content']
@@ -91,7 +92,7 @@ try {
 }
 ---
 
-<Layout hideFloatingSidebar={hasChildPosts || isCurrentSubpost}>
+<Layout title={post.data.title} description={post.data.description} image={postImage} hideFloatingSidebar={hasChildPosts || isCurrentSubpost}>
   <PostHead slot="head" post={post} />
   {
     (hasChildPosts || isCurrentSubpost) && (

@@ -15,18 +15,17 @@ const yearsExperience = (monthsExperience / 12).toFixed(1)
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Joan",
+  "name": "Joan Matías",
   "url": SITE.href,
   "image": "https://avatars.githubusercontent.com/u/229201137",
   "description": SITE.description,
   "jobTitle": "Desarrollador Web",
-  "knowsAbout": ["Desarrollo Web", "React", "TypeScript", "Next.js", "Experiencias Digitales"]
+  "knowsAbout": ["Desarrollo Web", "React", "TypeScript", "Next.js"]
 }
 ---
 <Layout class="max-w-3xl">
-  <PageHead slot="head" title="Sobre Mí | Joan Matias" />
+  <PageHead slot="head" title="Sobre Mí | Joan Matías" />
   
-  <!-- Person Schema for About page SEO -->
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   
   <Breadcrumbs items={[{ label: 'Sobre Mí', icon: 'lucide:user' }]} />
@@ -37,100 +36,102 @@ const personSchema = {
       <div class="flex-shrink-0">
         <img 
           src="https://github.com/joanmat117.png" 
-          alt="Foto de perfil de Joan"
+          alt="Joan Matías - Desarrollador Web"
           width="120"
           height="120"
           class="rounded-full border-4 border-border shadow-lg"
         />
       </div>
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl font-bold">Hola, soy Joan</h1>
+        <h1 class="text-3xl md:text-4xl font-bold">Hola, soy Joan Matías</h1>
         <p class="text-sm text-muted-foreground font-mono mt-1">
-          Desarrollador web · {yearsExperience} años creando cosas para internet
+          Desarrollador web · {yearsExperience} años creando para internet
         </p>
       </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="prose prose-sm dark:prose-invert max-w-none space-y-8">
+    <!-- Contenido principal -->
+    <div class="space-y-8">
       <!-- Introducción -->
       <div class="space-y-4">
         <p class="text-foreground leading-relaxed">
-          Llevo más de {yearsExperience} años metido en esto de construir cosas para la web, y cada día me sorprende lo mucho que queda por aprender. Me encanta transformar ideas en experiencias digitales que la gente disfrute usar.
+          Llevo más de {yearsExperience} años construyendo cosas para la web, y lo que más me motiva es transformar ideas en experiencias digitales que la gente disfrute usar.
         </p>
         
         <p class="text-muted-foreground leading-relaxed">
-          Si tuviera que resumir mi enfoque, diría que me obsesiona encontrar ese punto donde la tecnología se siente mágica pero nunca complicada. Me da igual si es un botón, un formulario o toda una aplicación: si no es fácil de usar, hay que repensarlo.
+          Me obsesiona encontrar ese punto donde la tecnología se siente mágica pero nunca complicada. Creo que si algo no es fácil de usar, por pequeño que sea, hay que repensarlo.
         </p>
       </div>
 
-      <!-- Mi camino -->
-      <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-foreground pt-4 border-t border-border">Cómo llegué hasta aquí</h2>
+      <!-- Mi enfoque -->
+      <div class="space-y-4 pt-6 border-t border-border">
+        <h2 class="text-xl font-semibold text-foreground mb-3">Mi enfoque</h2>
         
         <p class="text-muted-foreground leading-relaxed">
-          Empecé como muchos: con proyectos pequeños que me enseñaron que lo más difícil no es hacer que algo funcione, sino hacer que funcione bien para los demás. Esa primera frustración de ver a alguien perderse en una interfaz que yo creía obvia cambió mi manera de ver todo.
+          Empecé con proyectos pequeños que me enseñaron que lo más difícil no es hacer que algo funcione, sino hacer que funcione bien para los demás. Desde entonces, me mueve una idea simple: la web debería ser accesible para todos, no solo técnicamente, sino en cómo se siente usarla.
         </p>
         
         <p class="text-muted-foreground leading-relaxed">
-          Desde entonces, me mueve una idea simple: la web debería ser accesible para todos. No solo técnicamente, sino en cómo se siente usarla. Por eso paso tanto tiempo pensando en detalles que muchos pasan por alto: la velocidad con la que carga una página, lo intuitivo que es encontrar lo que buscas, o cómo se siente la interacción en el móvil.
-        </p>
-      </div>
-
-      <!-- Lo que me importa -->
-      <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-foreground pt-4 border-t border-border">Lo que de verdad me importa</h2>
-        
-        <p class="text-muted-foreground leading-relaxed">
-          <strong class="text-foreground">El código que escribo hoy debe entenderse mañana</strong> — ya sea por mí o por alguien más. Por eso prefiero soluciones claras antes que trucos ingeniosos que nadie entiende.
-        </p>
-        
-        <p class="text-muted-foreground leading-relaxed">
-          <strong class="text-foreground">La velocidad no es un extra, es parte fundamental</strong> — si una web tarda en cargar, ya empezamos mal. Mejorar performance no es optimización prematura, es respeto por el tiempo de la gente.
-        </p>
-        
-        <p class="text-muted-foreground leading-relaxed">
-          <strong class="text-foreground">Aprender en público vale la pena</strong> — los errores que comparto aquí probablemente ayuden a alguien más a no tropezar con lo mismo. Y las cosas que descubro, si las guardo solo para mí, no sirven de mucho.
-        </p>
-        
-        <p class="text-muted-foreground leading-relaxed">
-          <strong class="text-foreground">Las herramientas cambian, los principios no</strong> — hoy uso React y Next.js, mañana quién sabe. Lo que queda es entender por qué ciertas decisiones técnicas funcionan y otras no.
+          Por eso valoro tanto los detalles: la velocidad de carga, lo intuitivo de la navegación, cómo se siente la interacción en móvil. Son esas pequeñas cosas las que marcan la diferencia entre algo que funciona y algo que se disfruta.
         </p>
       </div>
 
-      <!-- Objetivo del blog -->
-      <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-foreground pt-4 border-t border-border">Y este blog, ¿de qué va?</h2>
+      <!-- Principios -->
+      <div class="space-y-3 pt-6 border-t border-border">
+        <h2 class="text-xl font-semibold text-foreground mb-3">Algunos principios que sigo</h2>
+        
+        <ul class="space-y-3 text-muted-foreground">
+          <li class="flex items-start gap-3">
+            <Icon name="lucide:code" class="text-primary mt-0.5 flex-shrink-0" />
+            <span><strong class="text-foreground">Código claro sobre código listo</strong> — prefiero soluciones entendibles que funcionen mañana</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <Icon name="lucide:zap" class="text-primary mt-0.5 flex-shrink-0" />
+            <span><strong class="text-foreground">La velocidad es respeto</strong> — mejorar performance no es opcional, es considerar el tiempo del usuario</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <Icon name="lucide:book-open" class="text-primary mt-0.5 flex-shrink-0" />
+            <span><strong class="text-foreground">Aprender compartiendo</strong> — lo que descubro solo sirve si lo comparto con otros</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- El blog -->
+      <div class="space-y-4 pt-6 border-t border-border">
+        <h2 class="text-xl font-semibold text-foreground mb-3">Sobre este blog</h2>
         
         <p class="text-muted-foreground leading-relaxed">
-          Este es el rincón donde desempolvo lo que voy aprendiendo. A veces son notas técnicas sobre algo que me tuvo atascado horas, otras son reflexiones sobre tendencias del desarrollo web, y de vez en cuando simplemente comparto herramientas o recursos que me han salvado la vida.
+          Aquí comparto lo que voy aprendiendo: desde soluciones técnicas que me resolvieron problemas hasta reflexiones sobre desarrollo web. No pretendo ser la fuente definitiva de nada, solo contar mi experiencia por si a alguien le resulta útil.
         </p>
         
-        <p class="text-muted-foreground leading-relaxed">
-          No pretendo ser la fuente definitiva de nada, solo contar mi experiencia por si a alguien le resulta útil. Si con algo de lo que escribo puedo ahorrarle a otro desarrollador el dolor de cabeza que yo pasé, ya me doy por satisfecho.
+        <p class="text-muted-foreground leading-relaxed text-sm">
+          Si con algo de lo que escribo puedo ahorrarle a otro desarrollador el mismo dolor de cabeza que yo pasé, ya me doy por satisfecho.
         </p>
       </div>
 
-      <!-- CTA más natural -->
-      <div class="bg-muted/40 p-6 rounded-xl border border-border mt-8">
+      <!-- Contacto -->
+      <div class="bg-muted/30 p-6 rounded-xl border border-border mt-8">
         <div class="space-y-4">
-          <h3 class="font-semibold text-foreground text-lg">¿Quieres charlar sobre algún proyecto?</h3>
+          <h3 class="font-semibold text-foreground text-lg">¿Trabajamos juntos?</h3>
           
           <p class="text-muted-foreground">
-            Si estás buscando a alguien que se tome en serio crear experiencias web que funcionen de verdad (y no solo en el ordenador del desarrollador), me encantaría escucharte.
+            Si buscas a alguien que combine habilidades técnicas con atención al detalle y un enfoque centrado en el usuario, me encantaría conversar sobre tu proyecto.
           </p>
           
-          <p class="text-muted-foreground text-sm">
-            También puedes echar un vistazo a <a href="/blog" class="text-primary hover:underline">lo que escribo</a> para hacerte una idea de cómo pienso.
-          </p>
-          
-          <div class="pt-2">
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
             <a 
               href="mailto:joanmat@proton.me" 
-              class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg no-underline text-sm font-medium hover:bg-primary/90 transition-colors whitespace-nowrap"
+              class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-lg no-underline text-sm font-medium hover:bg-primary/90 transition-colors"
             >
-              <Icon name="lucide:message-circle" />
-              Escribirme
+              <Icon name="lucide:mail" />
+              Enviar email
+            </a>
+            <a 
+              href="/blog" 
+              class="inline-flex items-center justify-center gap-2 border border-input bg-background px-5 py-3 rounded-lg text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              <Icon name="lucide:newspaper" />
+              Leer el blog
             </a>
           </div>
         </div>
@@ -138,22 +139,15 @@ const personSchema = {
     </div>
   </section>
 
-  <!-- Script para calcular experiencia dinámicamente (cliente) -->
   <script>
-    function calculateExperience() {
-      const start = new Date('2024-06-01')
-      const today = new Date()
-      const months = (today.getFullYear() - start.getFullYear()) * 12 + (today.getMonth() - start.getMonth())
-      const years = (months / 12).toFixed(1)
-      
-      // Actualizar en todos los lugares donde aparece
-      document.querySelectorAll('[data-experience]').forEach(el => {
-        el.textContent = years
-      })
-    }
+    // Experiencia dinámica
+    const start = new Date('2024-06-01')
+    const now = new Date()
+    const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth())
+    const years = (months / 12).toFixed(1)
     
-    // Ejecutar al cargar y actualizar cada año
-    calculateExperience()
-    setInterval(calculateExperience, 1000 * 60 * 60 * 24 * 365) // Cada año
+    document.querySelectorAll('[data-experience]').forEach(el => {
+      el.textContent = years
+    })
   </script>
 </Layout>

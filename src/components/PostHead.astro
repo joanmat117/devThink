@@ -11,7 +11,6 @@ const { post } = Astro.props
 
 const title = post.data.title || SITE.title
 const description = post.data.description || SITE.description
-const image = new URL('/static/1200x630.png', Astro.site)
 const author =
   post.data.authors && post.data.authors.length > 0
     ? post.data.authors.join(', ')
@@ -19,23 +18,8 @@ const author =
 
 const postUrl = new URL(Astro.url.pathname, Astro.site).href
 
-let postImage: string;
-if (post?.data?.image) {
-  // Si es un objeto ImageMetadata, toma la propiedad src
-  if (typeof post.data.image === 'object' && 'src' in post.data.image) {
-    postImage = post.data.image.src;
-  } 
-  // Si ya es una string, úsala directamente
-  else if (typeof post.data.image === 'string') {
-    postImage = post.data.image;
-  } 
-  // Fallback
-  else {
-    postImage = image.href;
-  }
-} else {
-  postImage = image.href;
-}
+
+const postImage = typeof post.data.image === 'object'? post.data.image.src : post.data.image
 
 const publishedTime = post.data.date?.toISOString() || new Date().toISOString()
 // Use published time as modified time if no updatedDate field exists
