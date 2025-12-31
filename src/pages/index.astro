@@ -112,7 +112,7 @@ const experience: ExperienceItem[] = [
           <!-- Heading -->
           <div class="space-y-4" style="min-height: clamp(120px, 20vh, 180px);">
             <h1 class="text-4xl sm:text-5xl md:text-6xl leading-[1.1] font-bold tracking-tight" style="font-variation-settings: 'wght' 700;">
-              Welcome to<br class="hidden sm:block" />
+              Bienvenido a<br class="hidden sm:block" />
               <span class="text-primary">{SITE.title}</span>
             </h1>
             <p class="text-muted-foreground mt-4 leading-relaxed text-base md:text-lg max-w-xl" style="min-height: 3rem;">
@@ -123,11 +123,11 @@ const experience: ExperienceItem[] = [
           <!-- CTA Buttons -->
           <div class="flex flex-wrap items-center gap-3 pt-2">
             <Link href="/blog" class={buttonVariants({ variant: 'default', size: 'lg' })}>
-              Read the blog
+              Leer el blog
               <Icon name="lucide:arrow-right" class="size-4" />
             </Link>
             <Link href="/about" class={buttonVariants({ variant: 'outline', size: 'lg' })}>
-              About me
+              Sobre mí
             </Link>
           </div>
           
@@ -163,9 +163,9 @@ const experience: ExperienceItem[] = [
   <!-- Experience Timeline -->
   <section class="mt-8">
     <div class="mb-6">
-      <h2 class="text-2xl font-semibold mb-2">Experience</h2>
+      <h2 class="text-2xl font-semibold mb-2">Experiencia</h2>
       <p class="text-sm text-muted-foreground">
-        Professional journey and achievements
+        Trayectoria profesional y logros
       </p>
     </div>
     
@@ -203,9 +203,9 @@ const experience: ExperienceItem[] = [
   <!-- Skills & Technologies (Optional) -->
   <section class="mt-12">
     <div class="mb-6">
-      <h2 class="text-2xl font-semibold mb-2">Skills & Technologies</h2>
+      <h2 class="text-2xl font-semibold mb-2">Habilidades y tecnologías</h2>
       <p class="text-sm text-muted-foreground">
-        Technologies and tools I work with
+        Tecnologías y herramientas con las que trabajo
       </p>
     </div>
     <ErrorBoundary client:load transition:persist="skills-error-boundary">
@@ -218,14 +218,14 @@ const experience: ExperienceItem[] = [
     <section class="mt-12">
       <div class="mb-6 flex items-center justify-between">
         <div>
-          <h2 class="text-2xl font-semibold mb-2">Latest from the blog</h2>
-          <p class="text-sm text-muted-foreground">Recent insights and articles</p>
+          <h2 class="text-2xl font-semibold mb-2">Lo último del blog</h2>
+          <p class="text-sm text-muted-foreground">Perspectivas y artículos recientes</p>
         </div>
         <Link 
           href="/blog" 
           class={buttonVariants({ variant: 'ghost' }) + ' hidden sm:flex items-center gap-1.5'}
         >
-          View all
+          Ver todo
           <Icon name="lucide:arrow-right" class="size-4" />
         </Link>
       </div>
@@ -251,12 +251,12 @@ const experience: ExperienceItem[] = [
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2">
                 <span class="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                  View all posts
+                  Ver todas las publicaciones
                 </span>
                 <Icon name="lucide:arrow-right" class="size-4 text-primary/70 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" aria-hidden="true" />
               </div>
               <p class="text-xs text-muted-foreground mt-0.5">
-                Explore all articles and tutorials
+                Explora todos los artículos y tutoriales
               </p>
             </div>
           </div>
@@ -278,7 +278,7 @@ const experience: ExperienceItem[] = [
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary"></span>
             </span>
-            <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Available</span>
+            <span class="text-xs font-medium text-muted-foreground uppercase tracking-wider">Disponible</span>
           </div>
         </div>
       </div>
@@ -286,11 +286,11 @@ const experience: ExperienceItem[] = [
       <div class="text-center space-y-6">
         <div class="space-y-2">
           <h2 class="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground leading-tight">
-            Let's connect
+            Conectemos
           </h2>
         </div>
         <p class="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto">
-          Have questions or want to collaborate? Feel free to reach out!
+          ¿Tienes preguntas o quieres colaborar? ¡No dudes en contactarme!
         </p>
         <div class="pt-4">
           {SOCIAL_LINKS.find(link => link.label === 'Email') && (
@@ -299,7 +299,7 @@ const experience: ExperienceItem[] = [
               class="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-lg bg-foreground text-background text-base font-medium hover:bg-foreground/90 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Icon name="lucide:mail" class="size-4" />
-              <span>Get in touch</span>
+              <span>Contactar</span>
               <Icon name="lucide:arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
           )}

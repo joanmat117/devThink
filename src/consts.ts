@@ -1,12 +1,12 @@
 import type { IconMap, SocialLink, Site } from '@/types'
 
 export const SITE: Site = {
-  title: 'Your Blog Name',
+  title: 'devThink',
   description:
-    'A brief description of your blog. This will be used in meta tags and social sharing.',
-  href: 'https://yourdomain.com',
-  author: 'your-author-id',
-  locale: 'en-US',
+    'Hola, mi nombre es Joan. En este blog comparto noticias del mundo dev, doy mis opiniones técnicas y recomiendo los recursos que más me ayudan como desarrollador.',
+  href: 'https://devthink.vercel.app',
+  author: 'joan-mat-id',
+  locale: 'es-ES',
   featuredPostCount: 2,
   postsPerPage: 6,
 }
@@ -48,21 +48,21 @@ export const NAV_LINKS: SocialLink[] = [
   },
   {
     href: '/about',
-    label: 'About',
+    label: 'Sobre mí',
   },
+  {
+    href: 'https://joanmat-portfolio.vercel.app/',
+    label: 'Portfolio'
+  }
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    href: 'https://github.com/username',
+    href: 'https://github.com/joanmat117',
     label: 'GitHub',
   },
   {
-    href: 'https://twitter.com/username',
-    label: 'Twitter',
-  },
-  {
-    href: 'mailto:your@email.com',
+    href: 'mailto:joanmat@proton.me',
     label: 'Email',
   },
   {

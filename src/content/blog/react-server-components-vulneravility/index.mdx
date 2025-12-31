@@ -1,0 +1,55 @@
+---
+title: "Dos Vulnerabilidades Críticas en React Server Components: Lo Que Pasó y Cómo Protegerte"
+image: https://i.postimg.cc/zvHwbvHh/react-server-components-vulneravility.png
+description: "Un resumen claro sobre las vulnerabilidades React2Shell y las relacionadas descubiertas en diciembre, su impacto en Next.js, y los pasos concretos para actualizar."
+date: 2025-12-05
+tags: ["security", "react", "nextjs", "vulnerability"]
+draft: false
+---
+
+A principios de diciembre, el equipo de React publicó un aviso de seguridad urgente. Se encontraron vulnerabilidades críticas en React Server Components (RSC) que afectan directamente a aplicaciones hechas con React 19 y Next.js 15/16. Si no has actualizado tus proyectos recientemente, es importante que lo hagas.
+
+## ¿Qué pasó exactamente?
+
+Se identificaron tres CVE (identificadores de vulnerabilidad) en el protocolo Flight que usan los React Server Components.
+
+La principal y más grave es la **CVE-2025-55182 (React2Shell)**. Es una vulnerabilidad de ejecución remota de código (RCE) que permite que un atacante ejecute código arbitrario en tu servidor simplemente enviando una petición HTTP POST maliciosa a un endpoint de tu aplicación. La Agencia de Ciberseguridad de EE.UU. (CISA) confirmó que fue explotada activamente en la naturaleza.
+
+Tras parchear esa, se encontraron dos problemas más en el mismo código:
+*   **CVE-2025-55184:** Podía causar una denegación de servicio (DoS) haciendo que el servidor entrara en un bucle infinito.
+*   **CVE-2025-55183:** En ciertas condiciones, podía filtrar el código fuente de una función del servidor.
+
+## ¿Mis proyectos están en riesgo?
+
+Sí, si cumples estas dos condiciones:
+1.  Usas **React 19** (versiones 19.0.0 a 19.2.0) con React Server Components.
+2.  Tu aplicación está construida con el **App Router de Next.js 15.x o 16.x**, o con otros frameworks como Waku o React Router.
+
+Incluso si tu app no define funciones de servidor explícitas (`'use server'`), el solo hecho de usar componentes de servidor la hace potencialmente vulnerable.
+
+## Acción urgente: Cómo actualizar
+
+La solución es directa: actualizar las dependencias a las versiones parcheadas.
+
+**Para React (paquetes del servidor):**
+Debes actualizar los paquetes `react-server-dom-*` a una de estas versiones seguras:
+*   `19.0.3`
+*   `19.1.4`
+*   `19.2.3`
+
+**Para Next.js:**
+La versión parcheada depende de tu versión base. Consulta la [guía oficial de React](https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components) para el mapeo exacto. Por ejemplo, para Next.js 15.5.6, la versión segura es la 15.5.9.
+
+Un comando típico para actualizar todo en un proyecto Next.js 15 sería:
+```bash
+npm install next@15.5.9 react@latest react-dom@latest
+```
+Después de ejecutarlo, verifica en tu `package-lock.json` que las versiones de `react-server-dom-webpack` (o `-turbopack`) coincidan con las listadas arriba.
+
+## Para reflexionar
+
+Este incidente nos recuerda dos cosas clave. Primero, que al llevar lógica de React al servidor (RSC), también llevamos allí la superficie de posibles ataques. La seguridad no es solo cosa del backend. Segundo, la importancia crítica de mantener las dependencias actualizadas, especialmente las fundamentales como el framework.
+
+La respuesta de los equipos de React y Next.js fue muy rápida, publicando parches el mismo día. Ahora nos toca a nosotros aplicarlos.
+
+Si estás leyendo esto y no has actualizado desde diciembre, ahora es un buen momento para hacerlo y desplegar los cambios.

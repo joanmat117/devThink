@@ -29,12 +29,12 @@ const isSubpost = !!parentPost
     />
     <div class="flex flex-col items-start overflow-hidden text-wrap">
       <span class="text-muted-foreground text-left text-xs">
-        {isSubpost ? 'Previous Subpost' : 'Previous Post'}
+        {isSubpost ? 'Subpost previo' : 'Post previo'}
       </span>
       <span class="w-full text-left text-sm text-balance text-ellipsis">
         {
           olderPost?.data.title ||
-            (isSubpost ? 'No older subpost' : "You're at the oldest post!")
+            (isSubpost ? 'No hay subposts más antiguos' : "Este es el post más antiguo!")
         }
       </span>
     </div>
@@ -56,10 +56,10 @@ const isSubpost = !!parentPost
         />
         <div class="flex flex-col items-center overflow-hidden text-wrap">
           <span class="text-muted-foreground text-center text-xs">
-            Parent Post
+            Post principal
           </span>
           <span class="w-full text-center text-sm text-balance text-ellipsis">
-            {parentPost?.data.title || 'No parent post'}
+            {parentPost?.data.title || 'No hay post principal'}
           </span>
         </div>
       </Link>
@@ -77,12 +77,12 @@ const isSubpost = !!parentPost
   >
     <div class="flex flex-col items-end overflow-hidden text-wrap">
       <span class="text-muted-foreground text-right text-xs">
-        {isSubpost ? 'Next Subpost' : 'Next Post'}
+        {isSubpost ? 'Subpost siguiente' : 'Post siguiente'}
       </span>
       <span class="w-full text-right text-sm text-balance text-ellipsis">
         {
           newerPost?.data.title ||
-            (isSubpost ? 'No newer subpost' : "You're at the newest post!")
+            (isSubpost ? 'No hay subpost más reciente' : "Estás en el post más reciente!")
         }
       </span>
     </div>

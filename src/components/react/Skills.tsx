@@ -9,64 +9,33 @@ type Category = {
 }
 
 type Technologies = {
-  'Systems & Virtualization': Category[]
-  'Networking & Security': Category[]
-  'Automation & Orchestration': Category[]
-  'Cloud & Infrastructure': Category[]
-  'Monitoring & Tools': Category[]
+  'Desarrollo Frontend': Category[]
+  'Ecosistema Backend': Category[]
+  'Herramientas & DevOps': Category[]
 }
 
-// Technologies based on CV
+// Technologies based on your stack
 const technologies: Technologies = {
-  'Systems & Virtualization': [
-    { text: 'Linux', logo: 'simple-icons:linux' },
-    { text: 'Ubuntu', logo: 'mdi:ubuntu' },
-    { text: 'Debian', logo: 'simple-icons:debian' },
-    { text: 'Windows Server', logo: 'mdi:windows' },
-    { text: 'Proxmox', logo: 'simple-icons:proxmox' },
-    { text: 'Docker', logo: 'mdi:docker' },
-    { text: 'Kubernetes', logo: 'mdi:kubernetes' },
-    { text: 'XEN', logo: 'lucide:box' },
+  'Desarrollo Frontend': [
+    { text: 'HTML', logo: 'simple-icons:html5' },
+    { text: 'CSS', logo: 'simple-icons:css3' },
+    { text: 'JavaScript', logo: 'simple-icons:javascript' },
+    { text: 'TypeScript', logo: 'simple-icons:typescript' },
+    { text: 'React', logo: 'simple-icons:react' },
+    { text: 'Next.js', logo: 'simple-icons:nextdotjs' },
+    { text: 'Astro', logo: 'simple-icons:astro' },
   ],
-  'Networking & Security': [
-    { text: 'CISCO', logo: 'simple-icons:cisco' },
-    { text: 'pfSense', logo: 'simple-icons:pfsense' },
-    { text: 'Fortinet', logo: 'simple-icons:fortinet' },
-    { text: 'Palo Alto', logo: 'simple-icons:paloaltonetworks' },
-    { text: 'StrongSwan', logo: 'lucide:wifi' },
-    { text: 'VLAN', logo: 'lucide:network' },
-    { text: 'CyberArk', logo: 'lucide:lock' },
-    { text: 'Nessus', logo: 'lucide:shield' },
+  'Ecosistema Backend': [
+    { text: 'Node.js', logo: 'simple-icons:nodedotjs' },
+    { text: 'Express', logo: 'simple-icons:express' },
+    { text: 'NestJS', logo: 'simple-icons:nestjs' },
+    { text: 'SQL', logo: 'simple-icons:postgresql' },
+    { text: 'Supabase', logo: 'simple-icons:supabase' },
   ],
-  'Automation & Orchestration': [
-    { text: 'Ansible', logo: 'simple-icons:ansible' },
-    { text: 'Terraform', logo: 'simple-icons:terraform' },
-    { text: 'Puppet', logo: 'simple-icons:puppet' },
-    { text: 'SALT', logo: 'simple-icons:saltproject' },
-    { text: 'Bash', logo: 'lucide:terminal' },
-    { text: 'Git', logo: 'mdi:git' },
-    { text: 'Flux', logo: 'simple-icons:flux' },
-    { text: 'Rancher', logo: 'simple-icons:rancher' },
-  ],
-  'Cloud & Infrastructure': [
-    { text: 'AWS', logo: 'lucide:cloud' },
-    { text: 'Oracle Cloud', logo: 'simple-icons:oracle' },
-    { text: 'Cloudflare', logo: 'simple-icons:cloudflare' },
-    { text: 'InfiniBand', logo: 'lucide:network' },
-    { text: 'PBS Scheduler', logo: 'lucide:server' },
-    { text: 'ManageIQ', logo: 'lucide:cloud-cog' },
-    { text: 'Talos Linux', logo: 'lucide:box' },
-    { text: 'Cilium CNI', logo: 'simple-icons:cilium' },
-  ],
-  'Monitoring & Tools': [
-    { text: 'Portainer', logo: 'simple-icons:portainer' },
-    { text: 'BAREOS', logo: 'lucide:hard-drive' },
-    { text: 'Asterisk', logo: 'simple-icons:asterisk' },
-    { text: 'Apache', logo: 'simple-icons:apache' },
-    { text: 'Nginx', logo: 'simple-icons:nginx' },
-    { text: 'MySQL', logo: 'simple-icons:mysql' },
-    { text: 'WordPress', logo: 'simple-icons:wordpress' },
-    { text: 'cPanel', logo: 'simple-icons:cpanel' },
+  'Herramientas & DevOps': [
+    { text: 'Git', logo: 'simple-icons:git' },
+    { text: 'GitHub', logo: 'simple-icons:github' },
+    { text: 'Vitest', logo: 'simple-icons:vitest' },
   ],
 }
 

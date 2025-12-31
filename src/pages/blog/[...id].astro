@@ -70,7 +70,7 @@ let navigation: Awaited<ReturnType<typeof getAdjacentPosts>> = { newer: null, ol
 let parentPost: Awaited<ReturnType<typeof getParentPost>> = null
 let hasChildPosts = false
 let subpostCount = 0
-let postReadingTime = '0 min read'
+let postReadingTime = '0 min de lectura'
 let combinedReadingTime: string | null = null
 let tocSections: Awaited<ReturnType<typeof getTOCSections>> = []
 
@@ -254,12 +254,12 @@ try {
         </div>
       </div>
 
-      <PostNavigation
+      <!-- <PostNavigation
         newerPost={navigation.newer}
         olderPost={navigation.older}
         parentPost={isCurrentSubpost ? navigation.parent : undefined}
-      />
-    </section>
+/> -->
+</section>
 
     {
       tocSections.length > 0 && (
@@ -288,7 +288,7 @@ try {
       parentPost={isCurrentSubpost ? navigation.parent : undefined}
     />
 
-    {
+<!--{
       /* Only show Disqus on main posts, not subposts */
       !isCurrentSubpost && (
         <div class="col-start-2 mt-12">
@@ -299,7 +299,8 @@ try {
           />
         </div>
       )
-    }
+}
+-->
   </section>
 
 

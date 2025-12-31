@@ -1,5 +1,5 @@
 {
-  "name": "merox-erudite",
+  "name": "joan-blog",
   "type": "module",
   "version": "1.0.0",
   "description": "An enhanced version of astro-erudite with newsletter integration, Disqus comments, analytics support, and additional features",
