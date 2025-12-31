@@ -62,6 +62,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'GitHub',
   },
   {
+    href: 'https://www.linkedin.com/in/joan-matias-dominguez-3652a1365/',
+    label: 'LinkedIn'
+  },
+  {
     href: 'mailto:joanmat@proton.me',
     label: 'Email',
   },
