@@ -19,7 +19,7 @@ const author =
 
 const postUrl = new URL(Astro.url.pathname, Astro.site).href
 const postImage = post?.data?.image
-  ? `post.data.image`
+  ? post.data.image
   : image.href
 const publishedTime = post.data.date?.toISOString() || new Date().toISOString()
 // Use published time as modified time if no updatedDate field exists
