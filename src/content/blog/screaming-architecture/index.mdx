@@ -1,0 +1,57 @@
+---
+title: "La estructura que tu proyecto necesita para crecer sin caos"
+description: "Separando el código por características (features) y código compartido (shared) para mantener proyectos grandes organizados e intuitivos."
+date: 2025-12-18
+tags: ["arquitectura", "buenas-practicas", "organización", "nextjs", "react"]
+image: 'https://i.postimg.cc/6pN1Ptfh/BCO-23a76353-6018-41c6-a0d7-adea91ea70d2.jpg'
+draft: false
+---
+
+Mantener un proyecto frontend organizado cuando empieza a crecer es un desafío real. ¿Dónde pones el componente del formulario de comentarios? ¿Y la lógica para buscar posts? Si todo va a carpetas genéricas como `components` o `utils`, al final se convierte en un cajón de sastre donde nada es fácil de encontrar.
+
+La estructura que a mí me ha funcionado, y que he visto en proyectos cada vez más grandes, es bastante simple: dividir todo en dos carpetas principales, `features` y `shared`.
+
+### La estructura: `features` y `shared`
+
+La idea central es agrupar el código por lo que la aplicación *hace*, no por el tipo de archivo que es. Así es como se ve:
+
+```
+/src
+  /features
+    /blog
+      /components
+        PostList.tsx
+        PostCard.tsx
+      /hooks
+        usePosts.ts
+      /utils
+        formatPostDate.ts
+    /comments
+      /components
+        CommentForm.tsx
+      /api
+        createComment.ts
+  /shared
+    /components
+      Button.tsx
+      Modal.tsx
+    /utils
+      formatDate.ts
+      apiClient.ts
+    /hooks
+      useLocalStorage.ts
+```
+
+**1. `/features` (Características)**
+Aquí vive cada una de las funcionalidades principales de tu app. Cada feature (como `blog` o `comments`) tiene su propia carpeta y dentro puede tener su propia estructura (componentes, hooks, lógica de API). Esto hace que todo lo relacionado con una función esté junto, sea fácil de encontrar y se pueda modificar o incluso eliminar con mínimo impacto en otras partes.
+
+**2. `/shared` (Compartido)**
+Aquí va todo lo que es transversal y se usa en múltiples features. Un botón genérico, un cliente configurado para la API, un hook para el localStorage o un formateador de fechas. Dentro de `shared` sí tiene sentido organizar por tipo de archivo (`components`, `utils`, `hooks`), porque su propósito es ser una librería interna de recursos técnicos reutilizables.
+
+### ¿Por qué merece la pena?
+
+*   **Escalabilidad natural**: Añadir una nueva función como `user-profile` es tan simple como crear una nueva carpeta dentro de `features`. El proyecto crece de forma ordenada.
+*   **Mantenibilidad**: Si necesitas cambiar algo de los comentarios, sabes que todo está en `/features/comments`. No tienes que buscar entre decenas de archivos en una carpeta `components` gigante.
+*   **Claridad para el equipo**: Cualquier persona nueva en el proyecto puede abrir la carpeta `features` y entender de un vistazo las capacidades de la aplicación.
+
+Para un proyecto pequeño o un prototipo, puede parecer excesivo. Pero en el momento en que la aplicación gana complejidad, esta separación entre *lógica de negocio por función* y *utilidades técnicas globales* se vuelve una de las mejores decisiones que puedes tomar para la salud a largo plazo de tu código.
