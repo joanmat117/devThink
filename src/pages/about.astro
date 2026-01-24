@@ -4,150 +4,103 @@ import PageHead from '@/components/PageHead.astro'
 import Layout from '@/layouts/Layout.astro'
 import { Icon } from 'astro-icon/components'
 import { SITE } from '@/consts'
+import { portfolioService } from '@/services/PortfolioService'
 
-// Calcular experiencia automáticamente
-const startDate = new Date('2024-06-01') 
-const today = new Date() 
-const monthsExperience = (today.getFullYear() - startDate.getFullYear()) * 12 + (today.getMonth() - startDate.getMonth())
-const yearsExperience = (monthsExperience / 12).toFixed(1)
+const lang = 'es';
+const personalInfo = await portfolioService.getPersonalInfo(lang);
 
-// Person Schema for About page
+const name = personalInfo?.name || "Joan Matías";
+const experienceYears = personalInfo?.exp || "1.5";
+const profileImage = personalInfo?.image || "https://github.com/joanmat117.png";
+const role = personalInfo?.role || "Desarrollador Web";
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Joan Matías",
+  "name": name,
   "url": SITE.href,
-  "image": "https://avatars.githubusercontent.com/u/229201137",
-  "description": SITE.description,
-  "jobTitle": "Desarrollador Web",
-  "knowsAbout": ["Desarrollo Web", "React", "TypeScript", "Next.js"]
+  "image": profileImage,
+  "description": personalInfo?.professionalAboutMe || SITE.description,
+  "jobTitle": role
 }
 ---
 <Layout class="max-w-3xl">
-  <PageHead slot="head" title="Sobre Mí | Joan Matías" />
+  <PageHead slot="head" title={`Sobre Mí | ${name}`} />
   
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   
-  <Breadcrumbs items={[{ label: 'Sobre Mí', icon: 'lucide:user' }]} />
+  <div class="mb-10">
+    <Breadcrumbs items={[{ label: 'Sobre Mí', icon: 'lucide:user' }]} />
+  </div>
 
-  <section class="flex flex-col gap-8">
-    <!-- Header con foto -->
+  <section class="flex flex-col gap-10">
     <div class="flex flex-col sm:flex-row sm:items-center gap-6">
-      <div class="flex-shrink-0">
+      <div class="relative flex-shrink-0">
         <img 
-          src="https://github.com/joanmat117.png" 
-          alt="Joan Matías - Desarrollador Web"
-          width="120"
-          height="120"
-          class="rounded-full border-4 border-border shadow-lg"
+          src={profileImage} 
+          alt={name}
+          width="100"
+          height="100"
+          class="rounded-full border border-border p-1 shadow-sm object-cover"
         />
       </div>
-      <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl font-bold">Hola, soy Joan Matías</h1>
-        <p class="text-sm text-muted-foreground font-mono mt-1">
-          Desarrollador web · {yearsExperience} años creando para internet
+      <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight text-foreground">
+          {name}
+        </h1>
+        <p class="text-base text-muted-foreground">
+          {role} <span class="mx-2 text-border">•</span> {experienceYears} años de experiencia
         </p>
       </div>
     </div>
 
-    <!-- Contenido principal -->
-    <div class="space-y-8">
-      <!-- Introducción -->
-      <div class="space-y-4">
-        <p class="text-foreground leading-relaxed">
-          Llevo más de {yearsExperience} años construyendo cosas para la web, y lo que más me motiva es transformar ideas en experiencias digitales que la gente disfrute usar.
-        </p>
-        
-        <p class="text-muted-foreground leading-relaxed">
-          Me obsesiona encontrar ese punto donde la tecnología se siente mágica pero nunca complicada. Creo que si algo no es fácil de usar, por pequeño que sea, hay que repensarlo.
+    <div class="space-y-10">
+      <div class="space-y-6">
+        {personalInfo?.largeAboutMe?.map((paragraph) => (
+          <p class="text-base md:text-lg leading-relaxed text-muted-foreground [&>strong]:text-foreground [&>strong]:font-medium" set:html={paragraph} />
+        )) || (
+          <p class="text-base md:text-lg leading-relaxed text-muted-foreground">{personalInfo?.professionalAboutMe}</p>
+        )}
+      </div>
+
+  
+      <div class="space-y-4 pt-10 border-t border-border">
+        <h2 class="text-xl font-semibold text-foreground tracking-tight">Sobre este espacio</h2>
+        <p class="text-base text-muted-foreground leading-relaxed">
+          Este blog es una extensión de mi proceso de aprendizaje. Aquí comparto soluciones técnicas y reflexiones sobre el desarrollo web actual, esperando que mi experiencia pueda servir de ayuda a otros desarrolladores.
         </p>
       </div>
 
-      <!-- Mi enfoque -->
-      <div class="space-y-4 pt-6 border-t border-border">
-        <h2 class="text-xl font-semibold text-foreground mb-3">Mi enfoque</h2>
-        
-        <p class="text-muted-foreground leading-relaxed">
-          Empecé con proyectos pequeños que me enseñaron que lo más difícil no es hacer que algo funcione, sino hacer que funcione bien para los demás. Desde entonces, me mueve una idea simple: la web debería ser accesible para todos, no solo técnicamente, sino en cómo se siente usarla.
-        </p>
-        
-        <p class="text-muted-foreground leading-relaxed">
-          Por eso valoro tanto los detalles: la velocidad de carga, lo intuitivo de la navegación, cómo se siente la interacción en móvil. Son esas pequeñas cosas las que marcan la diferencia entre algo que funciona y algo que se disfruta.
-        </p>
-      </div>
-
-      <!-- Principios -->
-      <div class="space-y-3 pt-6 border-t border-border">
-        <h2 class="text-xl font-semibold text-foreground mb-3">Algunos principios que sigo</h2>
-        
-        <ul class="space-y-3 text-muted-foreground">
-          <li class="flex items-start gap-3">
-            <Icon name="lucide:code" class="text-primary mt-0.5 flex-shrink-0" />
-            <span><strong class="text-foreground">Código claro sobre código listo</strong> — prefiero soluciones entendibles que funcionen mañana</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <Icon name="lucide:zap" class="text-primary mt-0.5 flex-shrink-0" />
-            <span><strong class="text-foreground">La velocidad es respeto</strong> — mejorar performance no es opcional, es considerar el tiempo del usuario</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <Icon name="lucide:book-open" class="text-primary mt-0.5 flex-shrink-0" />
-            <span><strong class="text-foreground">Aprender compartiendo</strong> — lo que descubro solo sirve si lo comparto con otros</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- El blog -->
-      <div class="space-y-4 pt-6 border-t border-border">
-        <h2 class="text-xl font-semibold text-foreground mb-3">Sobre este blog</h2>
-        
-        <p class="text-muted-foreground leading-relaxed">
-          Aquí comparto lo que voy aprendiendo: desde soluciones técnicas que me resolvieron problemas hasta reflexiones sobre desarrollo web. No pretendo ser la fuente definitiva de nada, solo contar mi experiencia por si a alguien le resulta útil.
-        </p>
-        
-        <p class="text-muted-foreground leading-relaxed text-sm">
-          Si con algo de lo que escribo puedo ahorrarle a otro desarrollador el mismo dolor de cabeza que yo pasé, ya me doy por satisfecho.
-        </p>
-      </div>
-
-      <!-- Contacto -->
-      <div class="bg-muted/30 p-6 rounded-xl border border-border mt-8">
-        <div class="space-y-4">
-          <h3 class="font-semibold text-foreground text-lg">¿Trabajamos juntos?</h3>
+      <div class="rounded-xl border border-border bg-muted/30 p-8 text-center sm:text-left">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div class="space-y-2">
+            <h3 class="text-lg font-semibold text-foreground">¿Hablamos?</h3>
+            <p class="text-sm text-muted-foreground">
+              Disponible para proyectos y colaboraciones desde {personalInfo?.location}.
+            </p>
+          </div>
           
-          <p class="text-muted-foreground">
-            Si buscas a alguien que combine habilidades técnicas con atención al detalle y un enfoque centrado en el usuario, me encantaría conversar sobre tu proyecto.
-          </p>
-          
-          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          <div class="flex flex-wrap justify-center gap-3">
+            {personalInfo?.social?.email && (
+              <a 
+                href={`mailto:${personalInfo.social.email}`} 
+                class="inline-flex items-center gap-2 bg-foreground text-background px-5 py-2.5 rounded-md text-sm font-medium hover:bg-foreground/90 transition-colors"
+              >
+                <Icon name="lucide:mail" class="size-4" />
+                Email
+              </a>
+            )}
             <a 
-              href="mailto:joanmat@proton.me" 
-              class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-lg no-underline text-sm font-medium hover:bg-primary/90 transition-colors"
+              href={personalInfo?.social?.linkedin || "#"} 
+              target="_blank"
+              class="inline-flex items-center gap-2 border border-border bg-background px-5 py-2.5 rounded-md text-sm font-medium hover:bg-muted transition-colors"
             >
-              <Icon name="lucide:mail" />
-              Enviar email
-            </a>
-            <a 
-              href="/blog" 
-              class="inline-flex items-center justify-center gap-2 border border-input bg-background px-5 py-3 rounded-lg text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              <Icon name="lucide:newspaper" />
-              Leer el blog
+              <Icon name="lucide:linkedin" class="size-4" />
+              LinkedIn
             </a>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <script>
-    // Experiencia dinámica
-    const start = new Date('2024-06-01')
-    const now = new Date()
-    const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth())
-    const years = (months / 12).toFixed(1)
-    
-    document.querySelectorAll('[data-experience]').forEach(el => {
-      el.textContent = years
-    })
-  </script>
 </Layout>

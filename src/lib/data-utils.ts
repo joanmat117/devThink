@@ -176,7 +176,7 @@ export async function hasSubposts(postId: string): Promise<boolean> {
 }
 
 export function isSubpost(postId: string): boolean {
-  return postId.includes('/')
+  return postId?.includes('/')
 }
 
 export async function getParentPost(
