@@ -1,0 +1,108 @@
+---
+title: "Zod: Validación de datos sin perder la cabeza (ni el tipado)"
+description: Aprende a usar Zod para blindar tus formularios y APIs. Una guía rápida basada en mis propias notas de Obsidian sobre esquemas, inferencia y validaciones personalizadas.
+date: 2026-01-02
+image: https://i.postimg.cc/NfjDy0RS/images-(5).jpg
+tags:
+  - typescript
+  - zod
+  - frontend
+  - backend
+draft: false
+---
+
+import Callout from '@/components/Callout.astro'
+
+Si programas con TypeScript, seguro te ha pasado: confías en que un dato tiene cierta forma, pero en tiempo de ejecución la realidad te da un bofetón y todo explota. TypeScript es genial en desarrollo, pero cuando los datos vienen de fuera (un formulario o una API), necesitamos un guardaespaldas. Ahí es donde entra **Zod**.
+
+Yo lo uso tanto en el frontend para formularios como en el backend para asegurar que lo que llega al servidor no es basura. Básicamente, creas un esquema y Zod se encarga de que la realidad coincida con la teoría.
+
+## Definiendo esquemas: Lo básico
+
+La sintaxis es muy parecida a lo que ya conoces, pero usando funciones. Puedes validar desde un simple string hasta objetos complejos con reglas específicas.
+
+```tsx
+import { z } from 'zod'
+
+// Un string sencillo
+const User = z.string()
+
+// Un objeto con esteroides
+const UserSchema = z.object({
+  name: z.string().min(4), // Mínimo 4 caracteres
+  age: z.number(),
+  isAdmin: z.boolean()
+})
+
+```
+
+Lo mejor de esto es que no tienes que escribir el tipo de TypeScript a mano. Puedes "extraerlo" directamente del esquema con `z.infer`. Así, si cambias el esquema, el tipo se actualiza solo. Un ahorro de tiempo increíble.
+
+```tsx
+type UserType = z.infer<typeof UserSchema>
+
+```
+
+## Validando la realidad
+
+Para comprobar si un dato es válido, usamos `.parse()`. Si el dato no cumple, Zod lanza un error. Si prefieres algo que no rompa el flujo, existe `.safeParse()`, que te devuelve un objeto indicando si hubo éxito o no.
+
+```tsx
+const result = UserSchema.parse({
+  name: "Pedro",
+  age: 30,
+  isAdmin: false
+})
+
+```
+
+## Refine: Cuando las reglas se ponen raras
+
+A veces las validaciones básicas de "es un número" o "es un string" no alcanzan. Imagina que tienes un campo de "confirmar contraseña". Para eso usamos `.refine()`.
+
+Se coloca al final del esquema y recibe dos cosas: una función que devuelve `true` si todo está bien, y un objeto para configurar el mensaje de error y a qué campo asignarlo.
+
+```tsx
+const passwordSchema = z.object({
+  password: z.string().min(4),
+  confirmPassword: z.string()
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Las contraseñas no coinciden",
+  path: ["confirmPassword"]
+})
+
+```
+
+<Callout>
+Si necesitas consultar una base de datos dentro de una validación, puedes usar `.parseAsync(data)`. Zod aguanta funciones asíncronas sin despeinarse.
+</Callout>
+
+## Personalizando los mensajes
+
+Nadie quiere que su usuario vea un error en inglés técnico. Puedes personalizar los mensajes directamente en las funciones de validación.
+
+Para los tipos primitivos, puedes controlar qué decir si el campo falta o si el tipo es incorrecto:
+
+```tsx
+z.string({
+  required_error: "Oye, este campo es obligatorio",
+  invalid_type_error: "Esto tiene que ser un texto, no inventes"
+}).min(4, { message: "Demasiado corto, dale un poco más de cariño" })
+
+```
+
+## Un par de trucos útiles: Pick y Coerción
+
+A veces tienes un esquema gigante y solo necesitas una parte. Con `.pick()` puedes crear un "sub-esquema" seleccionando solo las propiedades que te interesan, manteniendo todas sus validaciones intactas.
+
+Otro salvavidas es la **coerción**. A veces los formularios te devuelven un número como string ("42"). En lugar de transformarlo a mano, dejas que Zod lo intente por ti:
+
+```tsx
+// Intenta convertir el input a número antes de validar
+const schema = z.coerce.number().min(18)
+
+```
+
+Al final, usar Zod es como tener un seguro de vida para tus datos. Te quitas de encima un montón de `if` manuales y te aseguras de que tu código sea mucho más robusto.
+
+¿Ya lo usas en tus proyectos o sigues validando a mano con pura fe?
