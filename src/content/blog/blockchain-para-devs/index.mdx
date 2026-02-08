@@ -1,0 +1,70 @@
+---
+
+title: "Blockchain, explicada para devs: del hash al nonce"
+description: "Cómo funciona de verdad la blockchain: hashes, el trabajo del nonce y por qué es tan difícil cambiar un dato una vez escrito."
+date: 2025-12-18
+image: https://i.postimg.cc/HLVJMhwc/Screenshot_2026_02_08_16_12_54_913_com_google_android_googlequicksearchbox_2.webp
+tags: ["blockchain", "tecnología", "conceptos", "backend"]
+draft: false
+
+---
+
+Cuando hablan de "blockchain", casi siempre es por Bitcoin o criptomonedas. Pero en realidad, es un tema de sistemas distribuidos. Vamos a verlo con palabras que ya conocemos.
+
+La idea base: un git log que no se puede cambiar
+
+Piensa en el historial de tu repositorio en Git. Cada commit tiene un hash único y apunta al hash del commit anterior.
+
+Si cambias algo en un commit viejo, su hash cambia y se rompe la cadena. Una blockchain funciona parecido: es como un git log que está repartido en muchas computadoras y donde todos tienen que ponerse de acuerdo. Cada "commit" es un bloque con datos.
+
+Cómo está hecho un bloque
+
+Cada bloque en la cadena tiene partes claves:
+
+1. Los datos: La información que se guarda, como transacciones.
+2. Su propio hash: Un identificador único. Se calcula con una función (como SHA-256) usando todo lo que tiene el bloque: los datos, un sello de tiempo, el hash del bloque anterior y un número especial llamado nonce.
+3. El hash del bloque anterior: Cada bloque guarda el hash del que viene antes que él.
+
+Así se forma una lista enlazada, donde cada bloque "sujeta" al anterior por su hash.
+
+[![images_(7).jpg](https://i.postimg.cc/Kcq8PNYB/images_(7).jpg)](https://postimg.cc/G9DRrvGm)
+
+Si tratas de modificar un dato dentro de un bloque viejo, su hash va a cambiar completamente. Para que la cadena siga siendo válida, no solo tendrías que recalcular el hash de ese bloque, sino también el de todos los bloques que vienen después, porque cada uno depende del anterior. Con una cadena larga, eso es imposible en la práctica.
+
+La clave de la seguridad: el nonce y la Prueba de Trabajo
+
+Aquí es donde entra la parte más interesante y donde la blockchain se separa de un simple historial. No hay un servidor central. En su lugar, son muchas computadoras (nodos) en una red peer-to-peer, como BitTorrent, pero con una misión distinta: ponerse de acuerdo sobre una sola verdad.
+
+¿Cómo logran ese acuerdo? Con un mecanismo llamado Proof-of-Work (Prueba de Trabajo). El corazón de este mecanismo es el nonce.
+
+El nonce (número usado una sola vez) es simplemente un número que los mineros (las computadoras que crean bloques) añaden al bloque. El objetivo no es elegir cualquier número, sino encontrar el nonce correcto que haga que el hash de todo el bloque cumpla una condición muy específica.
+
+Esta condición, en redes como Bitcoin, es que el hash resultante debe comenzar con una cierta cantidad de ceros (ej: 0000000000a3b7c6...).
+
+¿Por qué es difícil?
+Porque con SHA-256, es imposible predecir qué nonce producirá un hash con ceros al frente. La única forma de encontrarlo es por fuerza bruta: probar números uno tras otro (1, 2, 3,... 1047283...) hasta que, por pura suerte, uno funcione. Esto consume mucho tiempo y energía de cómputo (y electricidad).
+
+¿Por qué es fácil verificar?
+Una vez que un minero anuncia que encontró el nonce (ej: 452983), cualquier otro nodo de la red puede tomar exactamente los mismos datos del bloque, añadir ese nonce, calcular el hash y comprobar en un instante si el resultado cumple la regla de los ceros. Verificar es barato; encontrar, caro.
+
+El verdadero "trabajo" y por qué es seguro
+
+Este proceso es la "Prueba de Trabajo". Al gastar energía para encontrar el nonce, el minero demuestra que hizo un trabajo real. La primera computadora que lo resuelve, propone su bloque a la red. Los demás lo verifican y, si está bien, lo aceptan y empiezan a buscar el nonce para el siguiente bloque.
+
+Ahora, piensa en lo que esto significa para alguien que quiera cambiar el pasado:
+
+1. Quieres modificar una transacción en un bloque viejo.
+2. Al cambiar ese dato, el hash de ese bloque se modifica.
+3. Ahora debes encontrar un nuevo nonce para que el hash de ese bloque alterado también cumpla la regla de los ceros. Esto requiere todo el trabajo de minado otra vez.
+4. Pero eso rompe la cadena, porque el bloque siguiente aún tiene el hash viejo del bloque que acabas de modificar. Así que también tienes que recalcular el nonce del bloque siguiente.
+5. Y luego el del siguiente... y el del siguiente. Tendrías que rehacer la Prueba de Trabajo para toda la cadena desde el punto del cambio hacia adelante, y hacerlo más rápido que el resto de la red combinada, que sigue minando nuevos bloques en la cadena honesta.
+
+Eso es lo que hace a la blockchain tan robusta. No es solo que los hashes estén enlazados, sino que modificar uno requiere rehacer una cantidad astronómica de trabajo computacional.
+
+En resumen
+
+Una blockchain es:
+
+1. Una base de datos repartida: La misma copia en miles de nodos (P2P).
+2. Una lista enlazada inmutable: Los bloques se encadenan con hashes criptográficos.
+3. Un sistema de consenso por trabajo: El mecanismo del nonce y la Proof-of-Work aseguran que todos acuerden la misma historia y que cambiarla sea tan costoso que no valga la pena.
