@@ -13,7 +13,7 @@ draft: false
 
 Cuando hablan de "blockchain", casi siempre es por Bitcoin o criptomonedas. Pero en realidad, es un tema de sistemas distribuidos. Vamos a verlo con palabras que ya conocemos.
 
-La idea base: un git log que no se puede cambiar
+## La idea base: un git log que no se puede cambiar
 
 Piensa en el historial de tu repositorio en Git. Cada commit tiene un hash único y apunta al hash del commit anterior.
 
@@ -33,7 +33,7 @@ Así se forma una lista enlazada, donde cada bloque "sujeta" al anterior por su 
 
 Si tratas de modificar un dato dentro de un bloque viejo, su hash va a cambiar completamente. Para que la cadena siga siendo válida, no solo tendrías que recalcular el hash de ese bloque, sino también el de todos los bloques que vienen después, porque cada uno depende del anterior. Con una cadena larga, eso es imposible en la práctica.
 
-La clave de la seguridad: el nonce y la Prueba de Trabajo
+## La clave de la seguridad: el nonce y la Prueba de Trabajo
 
 Aquí es donde entra la parte más interesante y donde la blockchain se separa de un simple historial. No hay un servidor central. En su lugar, son muchas computadoras (nodos) en una red peer-to-peer, como BitTorrent, pero con una misión distinta: ponerse de acuerdo sobre una sola verdad.
 
@@ -63,7 +63,7 @@ Ahora, piensa en lo que esto significa para alguien que quiera cambiar el pasado
 
 Eso es lo que hace a la blockchain tan robusta. No es solo que los hashes estén enlazados, sino que modificar uno requiere rehacer una cantidad astronómica de trabajo computacional.
 
-En resumen
+## Repaso
 
 Una blockchain es:
 
