@@ -1,0 +1,180 @@
+---
+
+title: "Roadmap NestJS 2025: De Junior a Senior"
+description: "Traducción y adaptación de una completa guía de progresión para desarrolladores NestJS, desde los fundamentos hasta arquitectura de sistemas. Créditos al autor original."
+date: 2026-2-9
+tags: ["nestjs", "backend", "roadmap", "aprendizaje", "carrera"]
+draft: false
+---
+
+*Este post es una traducción y adaptación del artículo original **"2025 NestJS BE Roadmap: Beginner to Senior Level"** publicado por [tak089](https://dev.to/tak089) en DEV Community. El contenido ha sido traducido y adaptado ligeramente para mantener el contexto actual. Todo el crédito de la estructura y conceptos es para él.*
+
+---
+
+He tenido mucho interés en los últimos meses por aprender NestJS, pero también bastante confusión sobre qué aprender después de hacer el primer CRUD. Este roadmap me pareció muy bueno y espero que te sea de ayuda.
+
+---
+
+### 1. Nivel Fresher (Entrada)
+
+**Objetivo:** Entender los fundamentos de NestJS, TypeScript y desarrollo backend. Construir aplicaciones pequeñas.
+
+**Áreas clave de aprendizaje:**
+
+- **Conceptos centrales:**
+  - Módulos, Controladores y Servicios.
+  - Inyección de dependencias y decoradores.
+  - Enrutamiento básico y manejo de peticiones.
+- **TypeScript básico:**
+  - Interfaces, tipos, enums y clases.
+  - Programación Orientada a Objetos (POO) básica.
+- **Construcción de APIs:**
+  - Crear REST APIs con `@Controller`, `@Get`, `@Post`.
+  - Manejar payloads con DTOs (`@Body`, `@Param`).
+- **Validación:**
+  - Usar `class-validator` y `class-transformer`.
+- **Base de datos:**
+  - Conectar con TypeORM, Prisma o Mongoose.
+- **Práctica:**
+  - Operaciones CRUD básicas.
+
+**Proyectos sugeridos:**
+- API de tareas (Todo list) con CRUD.
+- Autenticación básica con JWT.
+- API de blog con recursos anidados (posts y comentarios).
+
+---
+
+### 2. Nivel Junior
+
+**Objetivo:** Desarrollar aplicaciones del mundo real con NestJS. Comprender middleware, guards y enrutamiento avanzado.
+
+**Áreas clave de aprendizaje:**
+
+- **Middleware y Guards:**
+  - Crear middleware para logging o autenticación.
+  - Usar guards para proteger rutas (`AuthGuard`).
+- **Interceptores y Pipes:**
+  - Implementar pipes personalizados para transformar datos de entrada.
+  - Usar interceptores para modificar respuestas o logging.
+- **Autenticación y Autorización:**
+  - Autenticación basada en JWT.
+  - Control de acceso por roles (RBAC).
+- **Bases de datos:**
+  - Diseñar bases de datos relacionales con TypeORM o Prisma.
+  - Migraciones y relaciones entre tablas.
+- **Manejo de errores:**
+  - Excepciones con `HttpException` y filtros globales.
+- **Documentación:**
+  - Integrar `@nestjs/swagger` para documentar APIs automáticamente.
+- **Testing:**
+  - Pruebas unitarias con Jest.
+  - Tests para servicios, controladores y middleware.
+- **Práctica:**
+  - Colaborar en equipos pequeños o proyectos open source.
+
+**Proyectos sugeridos:**
+- API de blog multiusuario con autenticación JWT.
+- Backend de e-commerce (productos, usuarios, pedidos).
+- API con panel de administración por roles.
+
+---
+
+### 3. Nivel Mid-Level
+
+**Objetivo:** Optimizar aplicaciones para rendimiento y escalabilidad. Empezar a mentorizar juniors.
+
+**Áreas clave de aprendizaje:**
+
+- **Arquitectura de Microservicios:**
+  - Implementar microservicios con NestJS.
+  - Comunicación vía RabbitMQ, Kafka o Redis.
+  - Usar `@nestjs/microservices`.
+- **Autenticación avanzada:**
+  - OAuth2 o SSO.
+  - Estrategias Passport para Google, GitHub, etc.
+- **Caché y rendimiento:**
+  - Cachear respuestas con Redis o memoria.
+  - Optimizar consultas y reducir latencia.
+- **Websockets y tiempo real:**
+  - Construir funcionalidades en tiempo real con `@nestjs/websockets`.
+- **Bases de datos avanzadas:**
+  - Optimizar consultas para escalabilidad.
+  - Características avanzadas de Prisma/TypeORM.
+- **Despliegue y escalado:**
+  - Contenerizar con Docker.
+  - Desplegar en AWS, GCP o Azure.
+- **CI/CD:**
+  - Automatizar tests y despliegues con GitHub Actions o GitLab CI.
+- **Mentoría:**
+  - Hacer code reviews y guiar a desarrolladores junior.
+
+**Proyectos sugeridos:**
+- Chat en tiempo real con WebSockets.
+- Sistema de e-commerce distribuido con microservicios (pagos, inventario).
+- API de red social escalable (posts, likes, notificaciones).
+
+---
+
+### 4. Nivel Senior
+
+**Objetivo:** Arquitecturar sistemas escalables, liderar equipos y gestionar aplicaciones complejas.
+
+**Áreas clave de aprendizaje:**
+
+- **Diseño de sistemas:**
+  - Arquitecturar sistemas tolerantes a fallos y escalables.
+  - Domain-Driven Design (DDD) aplicado a NestJS.
+  - Implementar CQRS y Event Sourcing para sistemas grandes.
+- **Microservicios avanzados:**
+  - Trazabilidad distribuida y logging (OpenTelemetry).
+  - Service discovery y comunicación (Consul).
+- **Arquitectura orientada a eventos:**
+  - Kafka, RabbitMQ o SQS para comunicación basada en eventos.
+  - Patrones saga para manejo de transacciones distribuidas.
+- **Seguridad:**
+  - Rate limiting, protección CSRF.
+  - Herramientas como Snyk para análisis de vulnerabilidades.
+- **DevOps:**
+  - Monitoreo con Prometheus y Grafana.
+  - Aplicaciones serverless con AWS Lambda o Azure Functions.
+- **Open Source:**
+  - Contribuir a NestJS o proyectos relacionados.
+  - Desarrollar librerías o paquetes reutilizables.
+- **Liderazgo:**
+  - Dirigir discusiones técnicas y decisiones de arquitectura.
+  - Colaborar con equipos de producto y stakeholders.
+
+**Proyectos sugeridos:**
+- Aplicación FinTech con pagos seguros y reportes.
+- Plataforma de analítica distribuida en tiempo real.
+- Aplicación SaaS multi-tenant con arquitectura escalable.
+
+---
+
+### Recursos de aprendizaje
+
+- **Documentación oficial:**
+  - [NestJS Documentation](https://docs.nestjs.com/)
+- **Cursos y tutoriales:**
+  - Udemy: Cursos de NestJS por instructores experimentados.
+  - YouTube: Tutoriales de Academind, Codevolution o Fazt Code (en español).
+- **Libros:**
+  - "Mastering NestJS" por Kamil Myśliwiec.
+  - "Node.js Design Patterns" (NestJS está construido sobre Node).
+- **Comunidad:**
+  - [Servidor de Discord de NestJS](https://discord.com/invite/nestjs).
+  - Participar en proyectos open source o discusiones en GitHub.
+
+---
+
+### Progresión por años
+
+- **Año 1 (Fresher):** Proyectos pequeños y conceptos fundamentales.
+- **Año 2 (Junior):** Proyectos reales, trabajo en equipo.
+- **Año 3 (Mid-Level):** Performance, escalabilidad, mentoría.
+- **Año 4+ (Senior):** Liderazgo técnico, arquitectura, contribuciones.
+
+Este roadmap me parece valioso porque no acelera etapas. No intentes correr a microservicios y DDD si todavía no tienes claro cómo funcionan los guards o las migraciones. Cada nivel tiene lo suyo.
+
+Nuevamente, el mérito es de [tak089](https://dev.to/tak089) por armar esta guía. Yo solo la acerqué por si a alguien le sirve en español.
